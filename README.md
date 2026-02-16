@@ -331,6 +331,26 @@ Installation of this package will be via the pip interface
 
 ## Tests
 
+Install development dependencies:
+
+```bash
+python -m pip install -r requirements-dev.txt
+```
+
+Run the test suite from the project root:
+
+```bash
+python -m pytest -q
+```
+
+Run a specific file:
+
+```bash
+python -m pytest -q tests/test_fortimgr.py
+```
+
+## Additional Notes
+
 Utilizing the library is relatively simple.
 
 Assuming you are within the with context and still using **fmg_instance** as before, to get all managed devices in 
