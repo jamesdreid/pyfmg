@@ -218,11 +218,13 @@ class RequestResponse(object):
 
 class FortiManager(object):
 
-    def __init__(self, host=None, user=None, passwd=None, debug=False, use_ssl=True, verify_ssl=False, timeout=300,
+    def __init__(self, host, user=None, passwd=None, debug=False, use_ssl=True, verify_ssl=False, timeout=300,
                  verbose=False, track_task_disable_connerr=False, disable_request_warnings=False, apikey=None,
                  check_adom_workspace=True):
         super(FortiManager, self).__init__()
         self._debug = debug
+        if not host:
+            raise ValueError("Host is required")
         self._host = host
         self._user = user
         self._use_ssl = use_ssl
@@ -592,6 +594,7 @@ class FortiManager(object):
         self.req_resp_object.reset()
         begin_task_time = datetime.now()
         start = time.time()
+        task_duration = 0
         self.req_resp_object.error_msg = "Task begins at {time}".format(time=str(begin_task_time))
         self.dprint()
         track_task = True
